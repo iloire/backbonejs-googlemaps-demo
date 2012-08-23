@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Playing with Backbone.js and Google Maps</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/bootstrap.spacelab.min.css"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin,latin-ext">
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+</head>
+ <body>
+
+  <div id="hub" class="">
+    <header>
+      <h1><small>playing with</small> backbone.js and google maps...</h1>
+    </header>
+
+    <div class="nav_controls" id="map_controls">
+      <button id="btn_content" class="btn btn-large btn-warning">Show content</button>
+    </div>
+
+    <div id="companies_holder">
+      <button id="btn_pop_new_company" class="btn"><i class="icon-plus"></i> New company</button>
+      <button id="btn_delete_all_companies" class="btn btn-danger"><i class="icon-remove icon-white"></i> Remove them all</button>
+
+      <div id="companies_list_holder"><ul></ul></div>
+    </div>
+
+    <div class="nav_controls" id="content_controls">
+      <button id="btn_map" class="btn btn-large btn-warning">Show map</button>
+    </div>
+
+  </div>
+
+  <section id="main">
+    <div class=row-fluid>
+      <div class="span4">
+        <h2>Lorem ipsum y más lorem (ole!)</h2>
+        <div class="alert alert-block">
+          <a class="close">×</a>
+          <h4 class="alert-heading">Demo</h4>
+          <p>Really simple demo of how to use Backbone.js and Google Maps with a few simple interactions.</p>
+        </div>
+
+        <ul>
+          <li>Markers are randomly generated and persist in localstorage.</li>
+          <li>Hybrid interface inspiration from: <a href="http://www.endangeredlanguages.com/" target="_blank" title="endangeredlanguages">endangeredlanguages</a> and <a href="http://www.metroroto.com/" target="_blank" title="metroroto">http://www.metroroto.com/</a>.</li>
+        </ul>
+      </div>
+
+      <div class="span8">
+
+      <div id="company_details_holder">
+
+      <h2>Content here</h2>
+      <form class="form-horizontal well">
+        <fieldset>
+          <legend>New form</legend>
+          <div class="control-group">
+            <label class="control-label" for="input01">Text input</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="input01">
+              <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="optionsCheckbox">Checkbox</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="optionsCheckbox" value="option1">
+                Option one is this and that—be sure to include why it's great
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="select01">Select list</label>
+            <div class="controls">
+              <select id="select01">
+                <option>something</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="multiSelect">Multicon-select</label>
+            <div class="controls">
+              <select multiple="multiple" id="multiSelect">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="fileInput">File input</label>
+            <div class="controls">
+              <input class="input-file" id="fileInput" type="file">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="textarea">Textarea</label>
+            <div class="controls">
+              <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="focusedInput">Focused input</label>
+            <div class="controls">
+              <input class="input-xlarge focused" id="focusedInput" type="text" value="This is focused…">
+            </div>
+          </div>
+          <div class="control-group success">
+            <label class="control-label" for="inputSuccess">Input with success</label>
+            <div class="controls">
+              <input type="text" id="inputSuccess">
+              <span class="help-inline">Woohoo!</span>
+            </div>
+          </div>
+          <div class="control-group success">
+            <label class="control-label" for="selectError">Select with success</label>
+            <div class="controls">
+              <select id="selectError">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <span class="help-inline">Woohoo!</span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- vendor libraries -->
+  <script src="app/vendor/jquery-1.7.1.js"></script>
+  <script src="app/vendor/underscore.js"></script>
+  <script src="app/vendor/backbone.js"></script>
+  <script src="app/vendor/backbone-localstorage.js"></script>
+  <script src="app/vendor/Faker.js"></script>
+
+  <!-- app -->
+  <script src="app/models/company.js"></script>
+  <script src="app/collections/company.js"></script>
+  <script src="app/views/company_list_item_view.js"></script>
+  <script src="app/views/company_list_view.js"></script>
+  <script src="app/views/company_marker_view.js"></script>
+
+  <script src="app/app.js"></script>
+
+  <script src="app/dummy_data_generator.js"></script>
+
+  <div id="map_canvas">map div</div>
+</body>
+</html>
