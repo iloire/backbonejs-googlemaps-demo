@@ -8,6 +8,10 @@ Don't expect anything fancy. Just a simple demo of how to use Backbone.js with G
 
 Open index.html.
 
+## Online demo in GitHub (gh-pages)
+
+http://iloire.github.com/backbonejs-googlemaps-demo/
+
 ## Release History
 ### 0.1.0 Initial release
 
