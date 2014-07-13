@@ -40,7 +40,7 @@ var CompanyMarkerView = Backbone.View.extend({
     // Event handlers for marker events
     //---------------------------------------
     show_company_detail : function(){
-      this.hide_company_info();
+      this.infowindow.close();
       App.show_content();
     },
 
