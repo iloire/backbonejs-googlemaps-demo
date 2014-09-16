@@ -41,17 +41,17 @@ var CompanyMarkerView = Backbone.View.extend({
     //---------------------------------------
     // Event handlers for marker events
 
-    show_company_detail : function(){
+    show_company_detail : function() {
       this.infowindow.close();
       App.show_content();
     },
 
-    hide_company_info : function(){
+    hide_company_info : function() {
       this.setIcon('img/buildings_32x32.png');
       this.infowindow.close();
     },
 
-    show_company_info : function(){
+    show_company_info : function() {
       this.setIcon('img/buildings_32x32_selected.png');
       this.infowindow.open(this.map, this);
     },
@@ -61,7 +61,7 @@ var CompanyMarkerView = Backbone.View.extend({
 
     render: function() { },
 
-    remove : function(){
+    remove : function() {
       this.marker.setMap(null);
       this.marker = null;
     }
