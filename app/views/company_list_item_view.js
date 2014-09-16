@@ -1,8 +1,9 @@
-//---------------------------------------
-// Company List Item View
-// --------------
-// The DOM element for an item in a list of company items...
-//---------------------------------------
+
+/**
+ * Company List Item View
+ * The DOM element for an item in a list of company items.
+ */
+
 var CompanyListItemView = Backbone.View.extend({
 
   initialize: function(options) {
@@ -13,7 +14,7 @@ var CompanyListItemView = Backbone.View.extend({
 
   //----------------------------------
   // Events and event handlers
-  //----------------------------------
+
   events: {
     'mouseover a': 'show_company_info',
     'mouseout a': 'hide_company_info',
@@ -22,31 +23,30 @@ var CompanyListItemView = Backbone.View.extend({
     'click a.detail': 'show_company_detail'
   },
 
-  show_company_detail : function(){
+  show_company_detail : function() {
     App.show_content();
   },
 
-  //show marker bubble
-  show_company_info : function(){
+  // show marker bubble
+  show_company_info : function() {
     this.marker_view.show_company_info.call(this.marker_view.marker);
   },
 
-  //hide marker bubble
-  hide_company_info : function(){
+  // hide marker bubble
+  hide_company_info : function() {
     this.marker_view.hide_company_info.call(this.marker_view.marker);
   },
 
-  //clicked on "delete". show confirm button.
-  ask_delete_company : function(){
+  // clicked on "delete". show confirm button.
+  ask_delete_company : function() {
     $('button', this.$el).hide();
     $('a.delete', this.$el).fadeIn();
   },
 
-  //delte company
-  delete_company : function(){
+  delete_company : function() {
     this.model.clear();
   },
-  //----------------------------------
+
   // END Events and event handlers
   //----------------------------------
 

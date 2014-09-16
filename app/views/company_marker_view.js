@@ -1,13 +1,15 @@
-//---------------------------------------
-// Company Marker View
-// --------------
-// The DOM element for a company marker...
-//---------------------------------------
+
+/**
+ * Company Marker View
+ * The DOM element for a company marker.
+ */
+
 var CompanyMarkerView = Backbone.View.extend({
 
     tagName:  "li",
 
     initialize: function(options) {
+
       var self = this;
 
       self.model = options.model;
@@ -38,7 +40,7 @@ var CompanyMarkerView = Backbone.View.extend({
 
     //---------------------------------------
     // Event handlers for marker events
-    //---------------------------------------
+
     show_company_detail : function(){
       this.infowindow.close();
       App.show_content();
@@ -53,6 +55,9 @@ var CompanyMarkerView = Backbone.View.extend({
       this.setIcon('img/buildings_32x32_selected.png');
       this.infowindow.open(this.map, this);
     },
+
+    // END Events and event handlers
+    //----------------------------------
 
     render: function() { },
 

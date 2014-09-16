@@ -1,11 +1,11 @@
 
 var dummy_data_generator = {
 
-  'reset' : function (){
+  'reset' : function() {
     Companies.remove_all();
   },
 
-  'get_dummy_company': function(){
+  'get_dummy_company': function() {
     var rnd_id = (new Date).getTime();
     var company = {
       company_id : rnd_id,
@@ -29,7 +29,7 @@ var dummy_data_generator = {
     return company;
   },
 
-  'repopulate' : function(){
+  'repopulate' : function() {
     Companies.remove_all();
     for (var i = 0, l = 10; i < l ;  i++) {
       Companies.add_new(this.get_dummy_company());

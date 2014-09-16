@@ -1,77 +1,76 @@
-// Create our global collection of **Companies**.
-var Companies = new CompanyList();
 
-//---------------------------------------
-// The Application
-// ---------------
-// Our overall **AppView** is the top-level piece of UI.
-//---------------------------------------
+// global for the sake of this example
+var Companies = new CompanyList();
+var App = null;
+
+/**
+ * The App
+ * Our overall **AppView** is the top-level piece of UI.
+ */
 var AppView = Backbone.View.extend({
 
     el: $("#hub"),
 
     //--------------------------------------
     // Event wiring (events and event handlers)
-    //--------------------------------------
+
     events: {
       'click #btn_content' : 'show_content',
       'click #btn_map' : 'show_map'
     },
 
-    //--------------------------------------
-    // Show content event: triggered when user wants the "content" mode
-    //--------------------------------------
-    show_content: function (){
+    show_content: function() { //triggers "content" mode
       var self = this;
       var top = 200;
       var speed = 600;
 
-      //set content position and fade in
-      self.main.animate({top: (top) + 'px'}, speed, function(){
+      // set content position and fade in
+      self.main.animate({top: (top) + 'px'}, speed, function() {
        self.main.fadeIn();
       });
 
       self.companies_holder.fadeOut();
 
-      //controls to switch back to map
+      // controls to switch back to map
       self.controls.hide().css({top: (top - 100) + 'px'});
-      setTimeout(function(){
+      setTimeout(function() {
         self.content_controls.fadeIn();
       }, 2 * speed);
 
-      //resize map canvas
+      // resize map canvas
       self.map_canvas.animate({height: (top) + 'px'}, speed);
     },
 
-    //--------------------------------------
-    // Show map event: triggered when user wants the "map" mode
-    //--------------------------------------
-    show_map: function (){
+    show_map: function() { // triggers "map" mode
       var self = this;
       var speed = 800;
 
-      //hide content
+      // hide content
       self.main.fadeOut();
 
-      //hide controls
+      // hide controls
       self.controls.hide();
 
       self.companies_holder.fadeIn();
 
-      //resize map canvas. make map 100%
+      // resize map canvas. make map 100%
       self.map_canvas.animate({height: '100%'}, speed);
 
-      setTimeout(function(){
-        //show map controls
+      setTimeout(function() {
+        // show map controls
         self.map_controls.css({top: '80%'});
         self.map_controls.fadeIn();
       }, speed);
     },
 
+    // END Events and event handlers
+    //----------------------------------
+
+
     //--------------------------------------
-    // Initialize map
+    // Initialise map
     //--------------------------------------
-    _initialize_map : function(){
+    _initialize_map : function() {
       var center = new google.maps.LatLng(41.63, -1);
       var styles = [
         {
@@ -93,15 +92,15 @@ var AppView = Backbone.View.extend({
         mapOptions);
     },
 
+
     //--------------------------------------
-    // App Initialization
+    // Initialise app
     //--------------------------------------
+
     initialize: function() {
       var self = this;
 
-      //--------------------------------------
-      // Cache UI control references
-      //--------------------------------------
+      // cache DOM elements for faster access
       self.main = $('#main');
       self.controls = $('.nav_controls');
       self.content_controls = $('#content_controls');
@@ -110,38 +109,32 @@ var AppView = Backbone.View.extend({
       self.header = $('header');
       self.companies_holder = $('#companies_holder');
 
-      //initialize map
+      // initialize map
       self._initialize_map();
 
-      //--------------------------------------
       // Initial control positions
       // Move header up (out of window)
-      //--------------------------------------
       self.header.css({top:'-1000px'});
       self.header.animate({top: '0px'}, 1500);
 
-      //hide all controls
+      // hide all controls
       self.controls.hide();
       self.controls.css({top: '80%'});
 
-      //self.map_controls.fadeIn();
-      setTimeout(function(){
+      // self.map_controls.fadeIn();
+      setTimeout(function() {
         self.map_controls.fadeIn();
       }, 1000);
 
-      //--------------------------------------
-      // Fetch (with delay)
-      //--------------------------------------
-      setTimeout(function(){ //delay markers popp
+      setTimeout(function() { // fetch data with some delay
         Companies.fetch();
-        //create views
+        // create views
         var list_view = new CompanyListView({model: Companies, map: self.map});
       }, 2000);
     }
 });
 
 // Load the application once the DOM is ready, using `jQuery.ready`:
-var App = null;
-$(function(){
+$(function() {
   App = new AppView();
 });
