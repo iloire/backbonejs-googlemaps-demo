@@ -1,4 +1,4 @@
-Backbone.js with Google Maps demo
+# Backbone.js with Google Maps demo
 
 ![Backbone.js with Google Maps demo](https://raw.github.com/iloire/backbonejs-googlemaps-demo/master/screenshots/backbonejs_google_maps01.png)
 
